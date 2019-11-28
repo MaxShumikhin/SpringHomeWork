@@ -13,14 +13,16 @@
 <body>
 <center>
     <h1><b>Добро пожаловать избранный, введи логин и пароль</b></h1>
-    <form class="text"  action="/enter" method="post" >
-    <input required type="text" name="login" placeholder="Login"><br>
-    <input required type="password" name="password" placeholder="Password"><br><br>
-    <input type="submit" value="Enter">
+    <form class="text" action="/enter" method="post">
+        <input required type="text" name="login" placeholder="Login"><br>
+        <input required type="password" name="password" placeholder="Password"><br><br>
+        <input type="submit" value="Enter">
     </form>
 
-    <p><form action="/">
-    <input type="submit" value="Cancel"></form></p>
+    <p>
+    <form action="/">
+        <input type="submit" value="Cancel"></form>
+    </p>
 </center>
 </body>
 </html>

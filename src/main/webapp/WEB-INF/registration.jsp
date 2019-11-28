@@ -6,10 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=utf8"
-         pageEncoding="utf8"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+         pageEncoding="utf8" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Registration</title>
@@ -19,7 +19,7 @@
 <center>
     <h1><b>Добро пожаловать на регистрацию</b></h1>
 
-<form:form method="post" action="registration" modelAttribute="user">
+    <form:form method="post" action="registration" modelAttribute="user">
         <input required type="text" name="login" placeholder="Login"><br>
         <input required type="password" name="password" placeholder="Password"><br>
         <input type="text" name="name" placeholder="First_name"><br>
@@ -36,7 +36,7 @@
         <p>
             <button type="reset">Reset</button>
         </p>
-</form:form>
+    </form:form>
     <p>
     <form action="/">
         <input type="submit" value="Cancel">

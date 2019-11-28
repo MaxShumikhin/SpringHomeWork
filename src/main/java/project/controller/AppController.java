@@ -44,8 +44,8 @@ public class AppController {
         user.setInfo(info);
         user.setAdress(adress);
         if (utilService.saveUser(user)) {
-            return "mainPage";
+            return "registrationGood";
         }
-        return "registration";
+        return "registrationBad";
     }
 }
