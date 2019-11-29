@@ -2,6 +2,7 @@ package project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.dao.CheckMethodsDao;
 import project.dao.MethodsDao;
 import project.entity.User;
 
@@ -12,8 +13,19 @@ import java.util.List;
 @Service
 public class UtilServiceImpl implements UtilService {
 
-    @Autowired
     private MethodsDao dao;
+    private CheckMethodsDao checkDao;
+
+
+    @Autowired
+    public void setDao(MethodsDao dao) {
+        this.dao = dao;
+    }
+
+    @Autowired
+    public void setCheckDao(CheckMethodsDao checkDao) {
+        this.checkDao = checkDao;
+    }
 
     @Override
     @Transactional
@@ -40,7 +52,20 @@ public class UtilServiceImpl implements UtilService {
     }
 
     @Override
+    @Transactional
     public List<User> allUsers() {
         return dao.allUsersDao();
+    }
+
+    @Override
+    @Transactional
+    public boolean checkLoginAndPassword(User user) {
+        return checkDao.checkLoginAndPasswordDao(user);
+    }
+
+    @Override
+    @Transactional
+    public boolean checkLogin (User user) {
+        return checkDao.checkLoginDao(user);
     }
 }

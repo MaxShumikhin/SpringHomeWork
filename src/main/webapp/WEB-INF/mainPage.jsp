@@ -16,7 +16,7 @@
     <h1><b>Добро пожаловать на самый чудесный сайт :) Желаете дальше познакомиться с ним?</b></h1><br>
 
     <p>
-    <form action="/enter" method="get">
+    <form action="enter" method="get">
         <input type="submit" value="Вход"> <br><br>
     </form>
     </p>

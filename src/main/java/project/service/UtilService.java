@@ -14,4 +14,8 @@ public interface UtilService {
     User findUserById(int id);
 
     List<User> allUsers();
+
+    boolean checkLoginAndPassword(User user);
+
+     boolean checkLogin (User user);
 }

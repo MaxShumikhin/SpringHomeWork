@@ -1,41 +1,41 @@
 package project.dao;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import project.entity.User;
-import project.service.HibernateUtil;
-
 
 import java.util.List;
+
 
 @Repository
 public class MethodsDaoImpl implements MethodsDao {
 
-    private Transaction transaction;
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public boolean saveUserDao(User user) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            session.save(user);
-            return true;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } return false;
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(user);
+        return true;
     }
 
     @Override
     public void deleteUserDao(User user) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(user);
     }
 
     @Override
     public void updateUserDao(User user) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.update(user);
     }
 
     @Override
@@ -45,6 +45,7 @@ public class MethodsDaoImpl implements MethodsDao {
 
     @Override
     public List<User> allUsersDao() {
-        return null;
+       Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from project.entity.User").list();
     }
 }
