@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Menu</title>
@@ -25,18 +26,19 @@
                 <th>Role</th>
                 <th>Действия</th>
             </tr>
+            <form:form method="post" action="enter" >
             <c:forEach items="${users}" var="user">
             <tr>
-                <td>${user.getIdUsers()}</td>
-                <td>${user.getLogin()}</td>
-                <td>${user.getPassword()}</td>
-                <td>${user.info.getName()}</td>
-                <td>${user.info.getlName()}</td>
-                <td>${user.info.getAge()}</td>
-                <td>${user.info.getDescription()}</td>
-                <td>${user.adress.getCountry()}</td>
-                <td>${user.adress.getCity()}</td>
-                <td>${user.getRole()}</td>
+                <td>${user.idUser}</td>
+                <td>${user.login}</td>
+                <td>${user.password}</td>
+                <td>${user.info.name}</td>
+                <td>${user.info.lName}</td>
+                <td>${user.info.age}</td>
+                <td>${user.info.description}</td>
+                <td>${user.adress.country}</td>
+                <td>${user.adress.city  }</td>
+                <td>${user.role}</td>
                     <%--  <td>
                           <form action="updateUser.jsp" method="post">
                               <input type="hidden" name="id" value="${user.getIdUser()}">
@@ -59,6 +61,7 @@
                       </td>--%>
             </tr>
             </c:forEach>
+            </form:form>
     </table>
 
     <p>

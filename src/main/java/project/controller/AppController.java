@@ -2,9 +2,11 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import project.entity.Adress;
 import project.entity.Info;
 import project.entity.User;
@@ -37,16 +39,24 @@ public class AppController {
 
 
     @RequestMapping(value = "enter", method = RequestMethod.POST)
-    public String enter(HttpServletRequest req, User user) {
+    public ModelAndView enter(User user) {
         if (utilService.checkLoginAndPassword(user)) {
-            List<User> users = utilService.allUsers();
-            req.setAttribute("users", users);
-            return "adminMenu";
+            return allFilms();
         } else {
-            return "enter";
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("enter");
+            return modelAndView;
         }
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView allFilms() {
+        List<User> users = utilService.allUsers();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("adminMenu");
+        modelAndView.addObject("users", users);
+        return modelAndView;
+    }
 
     @RequestMapping(value = "registration", method = RequestMethod.GET)
     public String goToRegistrationPage() {
