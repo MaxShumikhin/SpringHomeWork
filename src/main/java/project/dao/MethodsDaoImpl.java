@@ -2,6 +2,7 @@ package project.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import project.entity.User;
@@ -45,7 +46,8 @@ public class MethodsDaoImpl implements MethodsDao {
 
     @Override
     public List<User> allUsersDao() {
-       Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from project.entity.User").list();
     }
+
 }

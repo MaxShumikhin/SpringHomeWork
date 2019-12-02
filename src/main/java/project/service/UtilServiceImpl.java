@@ -14,14 +14,13 @@ import java.util.List;
 public class UtilServiceImpl implements UtilService {
 
     private MethodsDao dao;
-    private CheckMethodsDao checkDao;
 
+    private CheckMethodsDao checkDao;
 
     @Autowired
     public void setDao(MethodsDao dao) {
         this.dao = dao;
     }
-
     @Autowired
     public void setCheckDao(CheckMethodsDao checkDao) {
         this.checkDao = checkDao;
@@ -65,7 +64,7 @@ public class UtilServiceImpl implements UtilService {
 
     @Override
     @Transactional
-    public boolean checkLogin (User user) {
+    public boolean checkLogin(User user) {
         return checkDao.checkLoginDao(user);
     }
 }

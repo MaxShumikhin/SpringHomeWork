@@ -15,4 +15,5 @@ public interface MethodsDao {
     User findUserByIdDao(int id);
 
     List<User> allUsersDao();
+
 }

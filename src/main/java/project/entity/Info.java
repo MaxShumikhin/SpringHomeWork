@@ -1,7 +1,5 @@
 package project.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -74,23 +72,5 @@ public class Info {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Info info = (Info) o;
-        return idInfo == info.idInfo &&
-                age == info.age &&
-                Objects.equals(name, info.name) &&
-                Objects.equals(lName, info.lName) &&
-                Objects.equals(description, info.description) &&
-                Objects.equals(user, info.user);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idInfo, name, lName, description, age, user);
     }
 }

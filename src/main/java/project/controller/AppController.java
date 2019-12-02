@@ -12,8 +12,6 @@ import project.entity.Info;
 import project.entity.User;
 import project.service.UtilService;
 
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -26,7 +24,6 @@ public class AppController {
         this.utilService = utilService;
     }
 
-
     @RequestMapping("/")
     public String mainPage() {
         return "mainPage";
@@ -37,25 +34,17 @@ public class AppController {
         return "enter";
     }
 
-
     @RequestMapping(value = "enter", method = RequestMethod.POST)
-    public ModelAndView enter(User user) {
-        if (utilService.checkLoginAndPassword(user)) {
-            return allFilms();
-        } else {
+    public ModelAndView enter() {
+//        if (utilService.checkLoginAndPassword(user)) {
+            List<User> users = utilService.allUsers();
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("enter");
+            modelAndView.setViewName("adminMenu");
+           modelAndView.addObject("users", users);
             return modelAndView;
-        }
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView allFilms() {
-        List<User> users = utilService.allUsers();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("adminMenu");
-        modelAndView.addObject("users", users);
-        return modelAndView;
+    /*    } else {
+            return "enter";
+        }*/
     }
 
     @RequestMapping(value = "registration", method = RequestMethod.GET)
@@ -73,6 +62,4 @@ public class AppController {
         }
         return "registrationBad";
     }
-
-
 }
