@@ -25,7 +25,7 @@
         <input type="text" name="name" placeholder="First_name"><br>
         <input type="text" name="lName" placeholder="Last_name"><br>
         <input type="text" name="description" placeholder="Description"><br>
-        <input type="text" name="age" placeholder="Age"><br>
+        Age <input type="number" size="3" name="age" min="1" max="120" value="1" placeholder="Age"><br>
         <input type="text" name="country" placeholder="Country"><br>
         <input type="text" name="city" placeholder="City"><br><br>
         <input type="radio" name="role" value="admin" checked="checked"> Admin <br>

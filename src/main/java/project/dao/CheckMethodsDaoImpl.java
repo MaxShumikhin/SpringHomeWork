@@ -35,4 +35,14 @@ public class CheckMethodsDaoImpl implements CheckMethodsDao {
         query.setParameter("login", user.getLogin());
         return query.list().isEmpty();
     }
+
+    @Override
+    public boolean checkRoleUserDao(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from User where login = :login and password = :password and role='admin'");
+        query.setParameter("login", user.getLogin());
+        query.setParameter("password", user.getPassword());
+        return !query.list().isEmpty();
+    }
 }
+

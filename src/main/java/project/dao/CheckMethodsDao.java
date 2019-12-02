@@ -6,5 +6,7 @@ public interface CheckMethodsDao {
 
     boolean checkLoginAndPasswordDao(User user);
 
-     boolean checkLoginDao(User user);
+    boolean checkLoginDao(User user);
+
+    boolean checkRoleUserDao(User user);
 }

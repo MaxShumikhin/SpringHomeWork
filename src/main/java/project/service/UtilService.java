@@ -15,7 +15,5 @@ public interface UtilService {
 
     List<User> allUsers();
 
-    boolean checkLoginAndPassword(User user);
-
-     boolean checkLogin (User user);
+    List<User> oneUser(User user);
 }

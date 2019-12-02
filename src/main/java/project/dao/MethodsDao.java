@@ -16,4 +16,6 @@ public interface MethodsDao {
 
     List<User> allUsersDao();
 
+    List<User> oneUserDao(User user);
+
 }

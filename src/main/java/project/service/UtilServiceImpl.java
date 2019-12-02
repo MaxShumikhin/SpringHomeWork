@@ -16,15 +16,9 @@ public class UtilServiceImpl implements UtilService {
 
     private MethodsDao dao;
 
-    private CheckMethodsDao checkDao;
-
     @Autowired
     public void setDao(MethodsDao dao) {
         this.dao = dao;
-    }
-    @Autowired
-    public void setCheckDao(CheckMethodsDao checkDao) {
-        this.checkDao = checkDao;
     }
 
     @Override
@@ -59,13 +53,6 @@ public class UtilServiceImpl implements UtilService {
 
     @Override
     @Transactional
-    public boolean checkLoginAndPassword(User user) {
-        return checkDao.checkLoginAndPasswordDao(user);
-    }
+    public List<User> oneUser(User user){return dao.oneUserDao(user);}
 
-    @Override
-    @Transactional
-    public boolean checkLogin(User user) {
-        return checkDao.checkLoginDao(user);
-    }
 }
