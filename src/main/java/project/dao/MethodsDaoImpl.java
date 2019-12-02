@@ -35,12 +35,13 @@ public class MethodsDaoImpl implements MethodsDao {
     @Override
     public void updateUserDao(User user) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(user);
+        session.merge(user);
     }
 
     @Override
     public User findUserByIdDao(int id) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(User.class, id);
     }
 
     @Override

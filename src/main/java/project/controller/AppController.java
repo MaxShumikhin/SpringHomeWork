@@ -2,7 +2,6 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,6 @@ import project.entity.Info;
 import project.entity.User;
 import project.service.UtilService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -72,16 +70,32 @@ public class AppController {
         return "registrationBad";
     }
 
-    @RequestMapping(value = "update/{id}", method = RequestMethod.GET)
-    public String goToUpdatePage(@PathVariable("id") int id) {
-        return "update";
+    @RequestMapping(value = "update/{idUser}", method = RequestMethod.GET)
+    public ModelAndView editPage(@PathVariable("idUser") int id) {
+        User user = utilService.findUserById(id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("update");
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public ModelAndView updateUser(@ModelAttribute("user") User user) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+    public String updateUser(@ModelAttribute("user") User user, Info info, Adress adress) {
+        user.setAdress(adress);
+        user.setInfo(info);
         utilService.updateUser(user);
-        return modelAndView;
+        return "redirect: menu";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String goToDeletePage() {
+        return "delete";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String deleteUser(int id) {
+        User user = utilService.findUserById(id);
+        utilService.deleteUser(user);
+        return "redirect: menu";
     }
 }

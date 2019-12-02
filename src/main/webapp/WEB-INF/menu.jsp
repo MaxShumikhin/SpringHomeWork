@@ -45,11 +45,24 @@
                 <td>${user.adress.country}</td>
                 <td>${user.adress.city}</td>
                 <td>
-                    <a href="/update/${user.idUser}">Изменить</a>
+                    <form action="update/${user.idUser}" method="get">
+<%--                        <input type="hidden" name="id" value="${user.idUser}">
+                        <input type="hidden" name="login" value="${user.login}">
+                        <input type="hidden" name="password" value="${user.password}">
+                        <input type="hidden" name="name" value="${user.info.name}">
+                        <input type="hidden" name="lName" value="${user.info.lName}">
+                        <input type="hidden" name="age" value="${user.info.age}">
+                        <input type="hidden" name="description" value="${user.info.description}">
+                        <input type="hidden" name="country" value="${user.adress.country}">
+                        <input type="hidden" name="city" value="${user.adress.city}">
+                        <input type="hidden" name="role" value="${user.role}">--%>
+                        <input type="submit" value="Изменить">
+                    </form>
                     <br>
-                    <form action="" method="post">
+                    <br>
+                    <form action="/delete" method="get">
                         <input type="hidden" name="id" value="${user.idUser}">
-                        <input type="submit" value="Удалить">
+                        <input type="submit" value="Delete">
                     </form>
                 </td>
             </tr>
