@@ -3,7 +3,6 @@ package project.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "adress")
@@ -20,7 +19,7 @@ public class Adress {
     private String city;
 
     @OneToMany(mappedBy = "adress", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<User> users = new ArrayList<>();
+    private List<User> users;
 
     public int getIdAdress() {
         return idAdress;

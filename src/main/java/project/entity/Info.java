@@ -1,7 +1,6 @@
 package project.entity;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "info")

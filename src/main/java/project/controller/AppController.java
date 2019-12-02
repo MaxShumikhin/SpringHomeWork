@@ -2,7 +2,6 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,8 +10,6 @@ import project.entity.Adress;
 import project.entity.Info;
 import project.entity.User;
 import project.service.UtilService;
-
-import java.util.List;
 
 @Controller
 public class AppController {
@@ -35,16 +32,17 @@ public class AppController {
     }
 
     @RequestMapping(value = "enter", method = RequestMethod.POST)
-    public ModelAndView enter() {
-//        if (utilService.checkLoginAndPassword(user)) {
-            List<User> users = utilService.allUsers();
+    public ModelAndView enter(User user) {
+        if (utilService.checkLoginAndPassword(user)) {
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("adminMenu");
-           modelAndView.addObject("users", users);
+            modelAndView.setViewName("menu");
+            modelAndView.addObject("users",utilService.allUsers());
             return modelAndView;
-    /*    } else {
-            return "enter";
-        }*/
+        } else {
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("enter");
+            return modelAndView;
+        }
     }
 
     @RequestMapping(value = "registration", method = RequestMethod.GET)
