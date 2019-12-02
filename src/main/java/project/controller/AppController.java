@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,7 +41,7 @@ public class AppController {
         if (utilService.checkLoginAndPassword(user)) {
             return menu();
         } else {
-ModelAndView modelAndView = new ModelAndView();
+            ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("enter");
             return modelAndView;
         }
@@ -69,5 +70,18 @@ ModelAndView modelAndView = new ModelAndView();
             return "registrationGood";
         }
         return "registrationBad";
+    }
+
+    @RequestMapping(value = "update/{id}", method = RequestMethod.GET)
+    public String goToUpdatePage(@PathVariable("id") int id) {
+        return "update";
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public ModelAndView updateUser(@ModelAttribute("user") User user) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/");
+        utilService.updateUser(user);
+        return modelAndView;
     }
 }
