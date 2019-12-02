@@ -3,6 +3,7 @@ package project.entity;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "adress")
@@ -51,5 +52,21 @@ public class Adress {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Adress adress = (Adress) o;
+        return idAdress == adress.idAdress &&
+                Objects.equals(country, adress.country) &&
+                Objects.equals(city, adress.city) &&
+                Objects.equals(users, adress.users);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idAdress, country, city, users);
     }
 }
