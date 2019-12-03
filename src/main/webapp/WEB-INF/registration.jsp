@@ -1,13 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Maksim
-  Date: 28.11.2019
-  Time: 20:33
-  To change this template use File | Settings | File Templates.
---%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <%@ page language="java" contentType="text/html; charset=utf8"
          pageEncoding="utf8" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -17,7 +11,7 @@
 <body>
 <body>
 <center>
-    <h1><b>Добро пожаловать на регистрацию</b></h1>
+    <h1><b><spring:message code="messages.registrationMessage"/></b></h1>
 
     <form:form method="post" action="registration" modelAttribute="user">
         <input required type="text" name="login" placeholder="Login"><br>
@@ -31,15 +25,15 @@
         <input type="radio" name="role" value="admin" checked="checked"> Admin <br>
         <input type="radio" name="role" value="user"> User <br><br>
         <p>
-            <button type="submit">Save</button>
+            <button type="submit"><spring:message code="messages.save"/></button>
         </p>
         <p>
-            <button type="reset">Reset</button>
+            <button type="reset"><spring:message code="messages.reset"/></button>
         </p>
     </form:form>
     <p>
     <form action="/">
-        <input type="submit" value="Cancel">
+        <input type="submit" value="<spring:message code="messages.onMainPage"/>">
     </form>
     </p>
 </center>

@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Maksim
-  Date: 28.11.2019
-  Time: 23:24
-  To change this template use File | Settings | File Templates.
---%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,11 +6,10 @@
 </head>
 <body>
 <center>
-<h1><b>Регистрация прошла успешно</b></h1><br>
-Поздравляем с регистрацией счастливчик ;) <br>
+<h1><b><spring:message code="messages.registrationGood"/> <br>
 <p>
 <form action="/" method="get">
-    <input type="submit" value="На главную"> </p>
+    <input type="submit" value="<spring:message code="messages.onMainPage"/>"> </p>
 </form>
 </center>
 </body>

@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Maksim
-  Date: 02.12.2019
-  Time: 22:51
-  To change this template use File | Settings | File Templates.
---%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,21 +7,21 @@
 </head>
 <body>
 <center>
-<h1><b>Добро пожаловать в базу данных</b></h1></p>
+<h1><b><spring:message code="messages.menuMessage"/></b></h1></p>
 
 <table border="2">
     <tr>
-        <th>ID</th>
-        <th>Login</th>
-        <th>Password</th>
-        <th>Role</th>
-        <th>Имя</th>
-        <th>Фамилия</th>
-        <th>Возвраст</th>
-        <th>Описание</th>
-        <th>Страна</th>
-        <th>Город</th>
-        <th>Действия</th>
+        <th><spring:message code="messages.ID"/></th>
+        <th><spring:message code="messages.login"/></th>
+        <th><spring:message code="messages.password"/></th>
+        <th><spring:message code="messages.role"/></th>
+        <th><spring:message code="messages.name"/></th>
+        <th><spring:message code="messages.lastName"/></th>
+        <th><spring:message code="messages.age"/></th>
+        <th><spring:message code="messages.description"/></th>
+        <th><spring:message code="messages.country"/></th>
+        <th><spring:message code="messages.city"/></th>
+        <th><spring:message code="messages.action"/></th>
     </tr>
     <c:forEach items="${user}" var="user">
         <tr>
@@ -44,7 +38,7 @@
             <td>
                 <br>
                 <form action="userUpdate/${user.idUser}" method="get">
-                    <input type="submit" value="Изменить">
+                    <input type="submit" value="<spring:message code="messages.update"/>">
                 </form>
                 <br>
             </td>
@@ -55,7 +49,7 @@
 
 <p>
 <form action="/">
-    <input type="submit" value="Выход"></form>
+    <input type="submit" value="<spring:message code="messages.onMainPage"/>"></form>
 </center>
 </body>
 </html>

@@ -1,13 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-<%--
-  Created by IntelliJ IDEA.
-  User: BVK
-  Date: 12/2/2019
-  Time: 16:38
-  To change this template use File | Settings | File Templates.
---%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,7 +8,7 @@
 </head>
 <body>
 <center>
-    Редактировать пользователя
+    <spring:message code="messages.updateMessage"/>
 
     <form action="/update" method="post">
         <input type="hidden" name="idUser" value="${user.idUser}"><br><br>
@@ -31,7 +24,7 @@
         Country <input type="text" name="country" value="${user.adress.country}" placeholder=${user.adress.country}><br><br>
         City <input type="text" name="city" value="${user.adress.city}" placeholder=${user.adress.city}><br><br>
         Role <input type="text" name="role" value="${user.role}" placeholder=${user.role}><br><br>
-        <input type="submit" value="Обновить">
+        <input type="submit" value="<spring:message code="messages.update"/>">
     </form>
 
 </center>

@@ -1,27 +1,26 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Maksim
-  Date: 28.11.2019
-  Time: 20:14
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html>
 <head>
     <title>Welcome</title>
 </head>
 <body>
+<span style="float: left">
+    <a href="?lang=en"><spring:message code="messages.language" /> </a>
+    |
+    <a href="?lang=ru"><spring:message code="messages.language"/></a>
+</span>
 <center>
-    <h1><b>Добро пожаловать на самый чудесный сайт :) Желаете дальше познакомиться с ним?</b></h1><br>
+    <h1><b><spring:message code="messages.welcome"/></b></h1><br>
 
     <p>
     <form action="/enter" method="get">
-        <input type="submit" value="Вход"> <br><br>
+       <input type="submit" value="<spring:message code="messages.enter"/>"> <br><br>
     </form>
     </p>
     <p>
     <form action="/registration" method="get">
-        <input type="submit" value="Регистрация">
+        <input type="submit" value="<spring:message code="messages.registration"/>">
     </form>
     </p>
 </center>

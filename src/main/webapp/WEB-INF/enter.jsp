@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Maksim
-  Date: 28.11.2019
-  Time: 20:32
-  To change this template use File | Settings | File Templates.
---%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,16 +6,16 @@
 </head>
 <body>
 <center>
-    <h1><b>Добро пожаловать избранный, введи логин и пароль</b></h1>
+    <h1><b><spring:message code="messages.enterMessage"/></b></h1>
     <form class="text" action="/enter" method="post">
         <input required type="text" name="login" placeholder="Login"><br>
         <input required type="password" name="password" placeholder="Password"><br><br>
-        <input type="submit" value="Enter">
+        <input type="submit" value="<spring:message code="messages.enter"/>">
     </form>
 
     <p>
     <form action="/">
-        <input type="submit" value="Cancel"></form>
+        <input type="submit" value="<spring:message code="messages.onMainPage"/>"></form>
     </p>
 </center>
 </body>

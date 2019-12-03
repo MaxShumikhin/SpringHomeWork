@@ -2,6 +2,7 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class AppController {
     }
 
     @RequestMapping("/")
-    public String mainPage() {
+    public String mainPage(Model model) {
         return "mainPage";
     }
 
@@ -80,11 +81,13 @@ public class AppController {
 
     @RequestMapping(value = "registration", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user, Info info, Adress adress) {
-        user.setInfo(info);
-        user.setAdress(adress);
-        if (checkService.checkLogin(user)) {
-            utilService.saveUser(user);
-            return "registrationGood";
+        if (0 < info.getAge() && info.getAge() < 120) {
+            user.setInfo(info);
+            user.setAdress(adress);
+            if (checkService.checkLogin(user)) {
+                utilService.saveUser(user);
+                return "registrationGood";
+            }
         }
         return "registrationBad";
     }
@@ -100,10 +103,12 @@ public class AppController {
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String updateUser(@ModelAttribute("user") User user, Info info, Adress adress) {
-        user.setAdress(adress);
-        user.setInfo(info);
-        utilService.updateUser(user);
-        return "redirect: menu";
+        if (0 < info.getAge() && info.getAge() < 120) {
+            user.setAdress(adress);
+            user.setInfo(info);
+            utilService.updateUser(user);
+            return "redirect: menu";
+        } else return "redirect: menu";
     }
 
     @RequestMapping(value = "userUpdate/{idUser}", method = RequestMethod.GET)
@@ -117,11 +122,17 @@ public class AppController {
 
     @RequestMapping(value = "userUpdate", method = RequestMethod.POST)
     public ModelAndView updateOneUser(@ModelAttribute("user") User user, Info info, Adress adress) {
-        user.setAdress(adress);
-        user.setInfo(info);
-        utilService.updateUser(user);
-        if (!checkService.checkRoleUserDao(user)) {
-       return userMenu(user);
+        if (0 < info.getAge() && info.getAge() < 120) {
+            user.setAdress(adress);
+            user.setInfo(info);
+            utilService.updateUser(user);
+            if (!checkService.checkRoleUserDao(user)) {
+                return userMenu(user);
+            } else {
+                ModelAndView modelAndView = new ModelAndView();
+                modelAndView.setViewName("mainPage");
+                return modelAndView;
+            }
         } else {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("mainPage");
@@ -129,15 +140,15 @@ public class AppController {
         }
     }
 
-        @RequestMapping(value = "delete", method = RequestMethod.GET)
-        public String goToDeletePage () {
-            return "delete";
-        }
-
-        @RequestMapping(value = "delete", method = RequestMethod.POST)
-        public String deleteUser ( int id){
-            User user = utilService.findUserById(id);
-            utilService.deleteUser(user);
-            return "redirect: menu";
-        }
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String goToDeletePage() {
+        return "delete";
     }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String deleteUser(int id) {
+        User user = utilService.findUserById(id);
+        utilService.deleteUser(user);
+        return "redirect: menu";
+    }
+}
