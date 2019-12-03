@@ -9,8 +9,8 @@
 <center>
     <h1><b><spring:message code="messages.enterMessage"/></b></h1>
     <form class="text" action="/enter" method="post">
-        <input required type="text" name="login" placeholder="Login"><br>
-        <input required type="password" name="password" placeholder="Password"><br><br>
+        <input required type="text" name="login" placeholder="<spring:message code="messages.login"/>"><br>
+        <input required type="password" name="password" placeholder="<spring:message code="messages.password"/>"><br><br>
         <input type="submit" value="<spring:message code="messages.enter"/>">
     </form>
 

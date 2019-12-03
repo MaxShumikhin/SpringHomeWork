@@ -7,7 +7,7 @@
 </head>
 <body>
 <center>
-<h1><b><spring:message code="messages.registrationGood"/> <br>
+    <h1><b><spring:message code="messages.registrationGood"/> </b></h1></h1><br>
 <p>
 <form action="/" method="get">
     <input type="submit" value="<spring:message code="messages.onMainPage"/>"> </p>
